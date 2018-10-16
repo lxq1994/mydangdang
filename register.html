@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title></title>
+		<title>新用户注册 - 当当网</title>
+		<link rel="icon" type="image/x-icon" href="img/icon.png" />
 		<link rel="stylesheet" type="text/css" href="css/page2.css"/>
 	</head>
 	<body>
@@ -20,8 +21,8 @@
 				</ul>
 				<div class="box">
 						<span>欢迎光临当当网, 请</span>
-						<a href="#">登录</a>
-						<a href="#">免费注册</a>
+						<a href="login.html">登录</a>
+						<a href="register.html">免费注册</a>
 				</div>	
 				
 			</div>
@@ -34,7 +35,7 @@
 				</div>
 				<div class="userright">
 					<a href="#"><img src="img/user.jpg"/></a>
-					<a href="#">当当首页</a>
+					<a href="index.html">当当首页</a>
 					<a href="#">注册帮助</a>
 				</div>
 			</div>
@@ -43,12 +44,15 @@
 				<p>贴心提示：请勿设置与邮箱密码相同的账户登录密码，防止不法分子窃取您的当当账户信息，<span>谨防诈骗!</span></p>
 			</div>
 			<ul>
-				<li>手机号码<input type="text" value="请输入您的手机号"/></li>
-				<li>登录密码<input type="password" /></li>
-				<li>验证密码<input type="password"/></li>
-				<li class="yzm">验证码<input type="text" value="请输入验证码"/> <div></div><a href="#">换一张</a></li>
+				<li>用户名：<input id="username" type="text" value="请输入您的手机号"/></li>
+				<li><span id="spanId"></span></li>
+				<li>登录密码<input id="userpass" type="password" /></li>
+				<li>验证密码<input id="mima" type="password"/></li>
+				<li class="yzm">验证码<input type="text" value="请输入验证码" /> <div></div><a href="#">换一张</a></li>
 				<li><input type="checkbox" checked/>我已阅读并同意&lt;&lt;<a href="#">当当交易条款</a>&gt;&gt;和&lt;&lt;<a href="#">当当社区条款</a>&gt;&gt;</li>
-				<li><input type="button" value="立即注册"/></li>
+				<li><input id="btn" type="button" value="立即注册"/></li>	
+				
+				
 			</ul>
 		</div>
 		<div class="footer">
@@ -62,9 +66,9 @@
 				<li><a href="#">官方blog</a></li>
 				
 			</ul>
-			<p>Copyright(&copy) 当当网 2008-2018 allRights Reserved</p>
-			<p>当当网 2008-2018 Copyright(&copy) 当当网 2008-2018 allRights Reserved 当当网 2008-2018 </p>
-			<p>Copyright(&copy) 当当网 2008-2018 当当网 2008-2018 allRights Reserved</p>
+			<p>Copyright(&copy;) 当当网 2008-2018 allRights Reserved</p>
+			<p>当当网 2008-2018 Copyright(&copy;) 当当网 2008-2018 allRights Reserved 当当网 2008-2018 </p>
+			<p>Copyright(&copy;) 当当网 2008-2018 当当网 2008-2018 allRights Reserved</p>
 			<div>
 				<a href="#"><img src="img/regfoot1.jpg"/></a>
 				<a href="#"><img src="img/regfoot2.jpg"/></a>
@@ -73,3 +77,72 @@
 		</div>
 	</body>
 </html>
+<script type="text/javascript" src="js/registerPromise.js"></script>
+<script type="text/javascript">
+	function $(id){
+		return document.getElementById(id);
+	}
+	$("username").onclick=function(){
+		$("username").value="";
+		$("username").style.color="black";
+		$("username").oninput=function(){
+
+		$("spanId").innerHTML="";
+		
+		let str="username="+$("username").value;
+		ajaxByPromise({
+		url:"php/rp2.php",
+		param:str
+	}).then(rg);
+			
+		
+	}
+
+	}
+	
+	function rg(str){
+		if(str=="0"){
+			
+				if($("username").value==""){
+					$("spanId").innerHTML="";
+				}else{
+								$("spanId").innerHTML="该用户尚未被注册，赶紧注册吧";
+								$("spanId").style.color="red";
+								$("spanId").style.fontSize="12px";
+	
+				}
+
+			
+		}else if(str=="1"){
+			$("spanId").innerHTML="dear,用户名已存在,请在想一个";
+		}else{
+			$("spanId").innerHTML="服务器错";
+		}
+	}
+	function register(str){
+		if(str=="0"){
+			alert("注册成功");
+			location.href="log.html";
+		}else if(str=="1"){
+			$("spanId").innerHTML="用户名已存在";
+		}else{
+			$("spanId").innerHTML="服务器错le";
+		}
+	}
+	
+		
+	
+
+	$("btn").onclick=function(){
+		let str="username="+$("username").value+"&userpass="+$("userpass").value;
+		console.log(str);
+		// ajax("get","registerPromise.php",str,true,register);
+		ajaxByPromise({
+			url:"php/registerPromise.php",
+			param:str
+		}).then(register);
+	
+	}
+	
+	
+</script>

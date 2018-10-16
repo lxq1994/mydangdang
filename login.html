@@ -36,11 +36,12 @@
 			     	</div>
 			     	<div class="username">
 			     		<a href="#"><img src="img/username.jpg"/></a>
-			     		<input type="text" value="邮箱//昵称//手机号码"/>
+			     		<input id="username" type="text" value="邮箱//昵称//手机号码"/><br/>
+			     		<span id="spanId"></span>
 			     	</div>
 			     	<div class="userpass">
 			     		<a href="#"><img src="img/username.jpg"/></a>
-			     		<input type="text" value="密码"/>
+			     		<input id="userpass" type="password"/>
 			     	</div>
 			     	<p>请点击下方图片，旋转至正确方向<span>换一组</span></p>
 			     	<ul class="ul1">
@@ -87,3 +88,49 @@
 		
 	</body>
 </html>
+<script type="text/javascript" src="js/registerPromise.js"></script>
+<script type="text/javascript">
+	function $(id){
+		return document.getElementById(id);
+	}
+	
+	$("username").onclick=function(){
+		$("spanId").innerHTML="";
+		$("username").value="";
+		$("username").style.color="black";
+	}
+	$("inp01").onclick=function(){
+		let str="username="+$("username").value+"&userpass="+$("userpass").value;
+		ajaxByPromise({
+			url:"php/log.php",
+			param:str
+		}).then(log);
+	}
+	function log(re){
+		if(re=="0"){
+//			alert("")
+			$("spanId").innerHTML="账号或密码错误，请重新输入";
+//			location.href="register.html";
+		}else if(re=="1"){
+			alert("登录成功")
+			$("spanId").innerHTML="登录成功";
+			location.href="index.html";
+		}else{
+			$("spanId").innerHTML="服务器出错";
+		}
+		
+		if(re=="1"){
+			let username=$("username").value;
+			let userpass=$("userpass").value;
+			addCookie(username,userpass,60);
+		}
+	}
+	
+	function addCookie(key,value,dayCount){
+	var d = new Date();
+	d.setDate(d.getDate()+dayCount);
+	document.cookie = key+"="+escape(value)+";expires="+d.toGMTString();
+}
+	
+
+</script>
