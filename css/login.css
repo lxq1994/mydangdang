@@ -109,6 +109,9 @@ ul ol {
         border-radius: 6px;
         line-height: 35px;
         margin-bottom: 28px; }
+        .content .face .login .username #spanId, .content .face .login .userpass #spanId {
+          color: red;
+          font-size: 12px; }
         .content .face .login .username img, .content .face .login .userpass img {
           display: inline-block;
           vertical-align: middle;

@@ -33,8 +33,8 @@ ul ol{
 	margin-top: 2px;
 	float:left;
 }
-.tools_left a{
-	display: inline-block;
+.tools_left>a{
+	display:inline-block;
 	line-height: 22px;
 	padding:4px 22px 0 9px;
 	color: #646464;
@@ -44,21 +44,66 @@ ul ol{
 	background-color: white;
 	
 }
-.tools_left:hover a{
+
+.tools_left:hover>a{
 	background: url(../img/jlt.png) no-repeat right -320px;
 	
+}
+.tools_left #place{
+	height: 0;
+	position: relative;
+	z-index: 1;
+	margin-top:34px;
+	
+	display: none;
+	
+}
+.tools_left:hover #place{
+	display: block;
+	
+}
+.tools_left:hover #place .places{
+	background: white;
+	border:1px solid #e6e6e6;
+}
+.tools_left #place ul{
+	display: inline-block;
+	line-height: 30px;
+	margin-left:30px;
+	
+}
+.tools_left  a{
+	float:left;
+	color: #646464;
 }
 .tools_right{
 	height: 34px;
 	float:right;
 }
-.tools_right ul li{
+.tools_right .uls>li{
 	float: left;
 	line-height: 34px;
 }
-.tools_right ul li:hover .jt{
+.tools_right .uls li:hover .jt{
 	background: url(../img/jlt.png) no-repeat right -320px;
 }
+.tools_right .jt+ul{
+	display: none;
+}
+#jtfather{
+	position: relative;
+}
+#jtfather:hover .jt+ul{
+	display:block;
+	position: relative;
+	line-height: 14px;
+	z-index: 1;
+	background: white;
+}
+#jtfather .jt+ul li a{
+	line-height: 16px;
+}
+
 .tools_right a{
 	display: block;
 	margin-top:4px;
@@ -73,11 +118,13 @@ ul ol{
 	color:#646464;
 	background: url(../img/jlt.png) no-repeat right -303px;
 }
-.uls li:nth-child(2) a{
+
+.uls>li:nth-child(2) a{
 	color: #ff2832;
 }
 .tools_right a:hover{
 	color: #ff2832;
+	background: white;
 }
 /*logo+搜索框+购物车+订单*/
 #logo{
@@ -91,10 +138,11 @@ ul ol{
 .logo_left{
 	width: 362px;
 	height: 100px;
-	float: left;
+	margin-top:10px;
 }
 .logo_right{
-	float: left;
+	float: right;
+    margin-top: -68px;
 }
 .logo_right_top{
 	margin-top:20px;
@@ -104,6 +152,7 @@ ul ol{
 	float: left;
 	width: 563px;
 	height: 38px;
+    margin-top: -24px;
 }
 .logo_right .search{
 	float: left;
@@ -116,6 +165,7 @@ ul ol{
 	color:#646464;
 	border: 0;
 	font-size: 12px;
+	outline: none;
 	vertical-align: middle;
 }
 .search a:nth-of-type(1){
@@ -137,6 +187,8 @@ ul ol{
 	width: 196px;
 	height:44px;
 	background: gray;
+	margin-top: -24px;
+	
 }
 .shopcar .car{
 	float:left;
@@ -164,6 +216,9 @@ ul ol{
 }
 .shopcar .order a{
 	color: #646464;
+}
+.hotsearch {
+	margin-top:-20px;
 }
 .hotsearch a{
 	float: left;
@@ -208,6 +263,7 @@ ul ol{
 	float:left;
 	padding-left:15px;
 	line-height: 40px;
+	margin-top: 10px;
 }
 .allgoods ul li{
 	float:left;
@@ -424,10 +480,84 @@ ul ol{
 	left:80px;
 	top:10px;
 }
+
+/*clothing--衣服*/
+.clothing{
+	width:100%;
+	height: 43px;
+	margin-top:10px;
+}
+.clothing p{
+		width: 626px;
+		line-height: 44px;
+		font-weight: bold;
+		float:left;
+		border-bottom:2px solid black;
+	}
+.clothing ul{
+		float:left;
+		height: 44px;
+		border-bottom:2px solid black;
+	}
+.clothing ul li{
+			width: 115px;
+			line-height: 42px;
+			text-align:center;
+			float:left;
+			border-right:1px solid #e6e6e6;
+			border-top:1px solid #e6e6e6;
+			background: #f5f5f5;
+			color: #646464;
+			border-radius:10px 10px 0 0;
+			
+		}
+.clothing ul li:hover{
+	cursor:pointer;
+}
+#lione{
+	border-top:2px solid black;;
+	border-bottom:2px solid white;
+	border-left: 2px solid black;
+	border-right:2px solid black;
+	border-radius:10px 10px 0 0;
+}
+
+/*girlshop*/
+.girlshop{
+	display: table;
+	margin:0 auto;
+}
+.girlshop .girlshopli{
+	float:left;
+	border-left:1px solid #e6e6e6;
+	border-top:1px solid #e6e6e6;
+}
+.girlshop .girlshopli a{
+	display: block;
+}
+.girlshop .girlshopli #shoepin{
+	display: inline;
+}
+.girlshop .shoplist{
+	padding-left:20px;
+}
+.girlshop .shoplist ul{
+	float:left;
+}
+.girlshop .shoplist ul:nth-child(2){
+	margin:0 30px 0 20px;
+}
+.girlshop .shoplist ul li a{
+	font-size: 12px;
+	color: #323232;
+}
+
+
 /*zhenggui--尾部部分*/
 #zhenggui{
 	width: 100%;
 	background: #fafafa;
+	clear: left;
 }
 .zhenggui{
 	width: 820px;
